@@ -4,5 +4,5 @@
 
 ## Install requirements
 ```
-pip isntall -r requirements.txt
+pip install -r requirements.txt
 ```
