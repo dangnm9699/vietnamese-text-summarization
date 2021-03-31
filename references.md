@@ -4,3 +4,4 @@
 1. [vntk](https://github.com/vunb/vntk?fbclid=IwAR1ETssOAmK8zkltabo5sOx9v9jEG8IKEih1-1MWkGqjqDi6IQNkt18wmR0)
 1. [Extractive summary](https://github.com/cuongducle/extractive-summary)
 1. [Bài giảng](https://users.soict.hust.edu.vn/huonglt/UNLP/lecture%20notes.htm)
+1. [Medium](https://medium.com/luisfredgs/automatic-text-summarization-with-machine-learning-an-overview-68ded5717a25)
