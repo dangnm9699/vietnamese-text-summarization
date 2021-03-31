@@ -5,3 +5,7 @@
 1. [Extractive summary](https://github.com/cuongducle/extractive-summary)
 1. [Bài giảng](https://users.soict.hust.edu.vn/huonglt/UNLP/lecture%20notes.htm)
 1. [Medium](https://medium.com/luisfredgs/automatic-text-summarization-with-machine-learning-an-overview-68ded5717a25)
+
+## Dataset
+
+1. [Dataset](https://github.com/undertheseanlp/NLP-Vietnamese-progress/blob/master/tasks/automatic_summarization.md)
