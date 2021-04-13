@@ -5,6 +5,7 @@
 1. [Extractive summary](https://github.com/cuongducle/extractive-summary)
 1. [Bài giảng](https://users.soict.hust.edu.vn/huonglt/UNLP/lecture%20notes.htm)
 1. [Medium](https://medium.com/luisfredgs/automatic-text-summarization-with-machine-learning-an-overview-68ded5717a25)
+1. [Wiki](https://fasttext.cc/docs/en/pretrained-vectors.html)
 
 ## Dataset
 
