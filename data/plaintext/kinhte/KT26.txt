@@ -1,0 +1,16 @@
+hệ thống vệ tinh định vị toàn cầu Galileo
+Nhóm nghiên cứu thuộc Trung tâm Quốc tế Nghiên cứu Phát triển Công nghệ định vị sử dụng vệ tinh (NAVIS), Trường Đại học Bách Khoa Hà Nội, đã thành công trong việc xác định vị trí thông qua sử dụng dịch vụ mở của Hệ thống Vệ tinh Định vị Toàn cầu Galileo đang được châu Âu xây dựng. Đây là lần đầu tiên một nhóm nghiên cứu tại châu Á công bố kết quả để minh chứng cho khả năng sử dụng dịch vụ định vị Galileo trong khu vực.
+
+Hệ thống Vệ tinh Định vị Toàn cầu Galileo của Liên minh Châu Âu dự kiến hoàn thành vào năm 2020, với chùm quỹ đạo gồm 27 vệ tinh. Tính đến thời điểm hiện tại, Hệ thống Galileo có 4 vệ tinh đang hoạt động trên quỹ đạo, với 2 vệ tinh được phóng lên vào trung tuần tháng 10-2012. Các vệ tinh này phục vụ cho giai đoạn kiểm thử trên quỹ đạo (In-Orbit Validation) của hệ thống. 
+
+Trước đó, tháng 12-2012, Trung tâm NAVIS đã thành công trong việc tiếp nhận và giải mã tín hiệu Hệ thống Galileo, tuy nhiên, tại thời điểm đó hệ thống thử nghiệm phát các bản tin giả, không chứa dữ liệu hợp lệ nên không thể sử dụng được dịch vụ định vị. Ngày 27-3-2013, từ lúc 9 giờ 15 phút đến 11 giờ (giờ Việt Nam), lần đầu tiên cả 4 vệ tinh thử nghiệm PFM, FM2, FM3, FM4 đã cùng xuất hiện trên bầu trời Hà Nội và phát đi các bản tin định vị tiêu chuẩn của dịch vụ mở Galileo E1 Open Service.
+
+Tại thời điểm đó, bộ thu Navisoft do Trung tâm NAVIS phát triển đã thu nhận tín hiệu, giải mã bản tin định vị; lần đầu tiên thành công trong việc xác định vị trí thông qua sử dụng dịch vụ định vị mở của Hệ thống Galileo.
+
+Đây là lần đầu tiên một nhóm nghiên cứu tại châu Á đưa ra kết quả chứng minh khả năng cung cấp dịch vụ định vị của Hệ thống Galileo trong khu vực. Các tạp chí uy tín nhất thế giới trong lĩnh vực định vị toàn cầu như GPSWorld và InsideGNSS đã đưa tin tức về sự kiện này.
+
+Ngoài ra, bộ thu Navisoft của Trung tâm NAVIS còn có khả năng hoạt động với tín hiệu Hệ thống GPS, hệ thống vệ tinh định vị đang được sử dụng rộng rãi nhất hiện nay, cũng như được trang bị khả năng phối hợp đồng thời tín hiệu đến từ hai hệ thống GPS và Galileo cho một giải pháp định vị, dẫn đường chung.
+
+Việc trở thành nhóm nghiên cứu đầu tiên tại châu Á công bố đã thành công trong việc sử dụng dịch vụ định vị Galileo, có ý nghĩa quan trọng đối với Trường ĐHBK Hà Nội nói riêng và Việt Nam nói chung trong việc làm chủ và phát triển các giải pháp định vị đa hệ thống, giúp nâng cao độ chính xác, độ tin cậy của dịch vụ định vị và đặc biệt giảm sự phụ thuộc vào một hệ thống định vị riêng lẻ.
+
+Theo kế hoạch của EU, hệ thống Galileo sẽ bắt đầu cung cấp dịch vụ định vị vào năm 2015, và hoàn thành vào năm 2020.
