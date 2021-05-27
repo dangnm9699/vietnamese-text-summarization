@@ -1,0 +1,7 @@
+﻿Ngân hàng Đầu tư và Phát triển Việt Nam đã xây dựng hệ thống Cổng thanh toán trực tuyến với các công ty chứng khoán.
+Hệ thống cung cấp cho các công ty chứng khoán một công cụ hiệu quả trong việc kết nối hệ thống giao dịch của Công ty chứng khoán với hệ thống tài khoản của nhà đầu tư mở tại ngân hàng, giúp ngân hàng thu hút một số lượng lớn tiền gửi của khách hàng và công ty chứng khoán, đồng thời góp phần đảm bảo an toàn cho tài khoản tiền của nhà đầu tư.
+Hệ thống đã đáp ứng được tất cả các yêu cầu về thời gian giao dịch trực tuyến, cũng như các yêu cầu về an toàn bảo mật.
+Tuy nhiên, hệ thống còn mắc phải một vài hạn chế.
+Trong tương lai, nhóm thực hiện sẽ kết hợp với các Ban nghiệp vụ  hướng tới các CTCK để tập hợp yêu cầu, nâng cấp sản phẩm.
+
+

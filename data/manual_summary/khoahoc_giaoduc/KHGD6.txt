@@ -1,0 +1,7 @@
+﻿Thực hiện cuộc vận động 2 không của Bộ Giáo dục và Đào tạo trong đó nhấn mạnh việc nói không với bệnh thành tích và tiêu cực trong thi cử.
+Nhóm tác giả đến từ trường Đại học Công nghiệp Hà Nội đã xây dựng nên Hệ thống Quản lý hoạt động đánh giá kết quả học tập của học sinh - sinh viên với chức năng quản lý và hỗ trợ việc thực hiện các khâu của quá trình đánh giá kết quả học tập của sinh viên hệ đại học, cao đẳng. 
+Hệ thống không chỉ giúp tiết kiệm nguồn nhân lực còn giúp cho quá trình đánh giá, chấm điểm sinh viên được minh bạch, khách quan.
+Tuy nhiên, hệ thống vẫn còn gặp phải một số khiếm khuyết do thực tế hoạt động phức tạp. 
+Trong tương lai, nhóm tác giả sẽ tiếp tục tối ưu hóa các chức năng trên hệ thống, tích hợp thêm các chức năng để tiến tới hình thành hệ thống Đại học Điện tử.
+
+
