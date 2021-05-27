@@ -10,46 +10,78 @@
 </head>
 
 <body>
-    <div class="container">
-        <div id="info">
-            <h1><strong>Nhóm X</strong>: Tóm tắt văn bản Tiếng Việt</h1>
+    <div class="content-container container-fluid">
+        <div id="title" class="row mt-4 justify-content-center">
+            <h1><strong>Nhóm 6</strong>: Tóm tắt văn bản Tiếng Việt</h1>
         </div>
-        <div id="input">
-            <form id="form-id" method="POST" action="http://localhost:5000/summarize">
-                <div class="row mt-4">
-                    <div class="col form-group">
-                        <label>Ratio</label>
-                        <input id="ratio" required name="ratio" type="number" min="0.3" max="0.4" step="0.01"
-                            placeholder="Enter ratio" class="form-control" />
-                    </div>
-                    <div class="col form-group">
-                        <label>Min length</label>
-                        <input id="min_length" required name="min_length" type="number" min="30" max="50" step="1"
-                            placeholder="Enter minimum length" class="form-control" />
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col form-group">
-                        <label>Paragraph</label>
-                        <textarea id="body" required name="body" type="text" rows="30"
-                            placeholder="Enter your paragraph" class="form-control text-justify"></textarea>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col form-group text-center">
-                        <button type="submit" class="btn btn-secondary">Submit</button>
-                    </div>
-                </div>
-            </form>
+        <div id="info" class="row mt-4 justify-content-center">
+            <div class="col-md-3">
+                <div class="row"><a style="margin: auto;">Nguyễn Minh Đăng</a></div>
+                <div class="row"><a style="margin: auto;">Nguyễn Văn Lương</a></div>
+            </div>
+            <div class="col-md-3">
+                <div class="row"><a style="margin: auto;">Bùi Minh Tuấn</a></div>
+                <div class="row"><a style="margin: auto;">Võ Đức Quân</a></div>
+            </div>
         </div>
-        <div id="output">
-            <div class="row mt-4">
-                <div id="title" class="col form-group text-center">
-
+        <div id="main-screen" class="row mt-4" style="width: 90%; margin: auto;">
+            <div id="input" class="col-md-6">
+                <div class="row mt-3 justify-content-center">
+                    <h2><strong><u>INPUT</u></strong></h2>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md">
+                        <form id="form-id" method="POST">
+                            <div class="row mt-3">
+                                <div class="col-md-6 form-group">
+                                    <label>Ratio</label>
+                                    <input id="ratio" required name="ratio" type="number" min="0.3" max="0.4"
+                                        step="0.01" placeholder="Enter ratio" class="form-control" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Min length</label>
+                                    <input id="min_length" required name="min_length" type="number" min="30" max="50"
+                                        step="1" placeholder="Enter minimum length" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md form-group">
+                                    <label>Paragraph</label>
+                                    <textarea id="body" required name="body" type="text" rows="20"
+                                        placeholder="Enter your paragraph" class="form-control text-justify"></textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-3 justify-content-center">
+                                <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div id="summarized" class="col form-group">
+            <div id="output" class="col-md-6">
+                <div class="row mt-3 justify-content-center">
+                    <h2><strong><u>OUTPUT</u></strong></h2>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md">
+                        <div class="row mt-3">
+                            <div class="col-md-6 form-group">
+                                <label>Input 1</label>
+                                <input placeholder="Enter input 1" class="form-control" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Input 2</label>
+                                <input placeholder="Enter input 2" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md form-group">
+                                <label>Summarized Paragraph</label>
+                                <textarea id="summarized" readonly id="body" required name="body" type="text" rows="20"
+                                    placeholder="Output here" class="form-control text-justify"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,39 +92,28 @@
         form.addEventListener('submit', getSummarizeResponse);
         function getSummarizeResponse(e) {
             e.preventDefault();
-            let div1 = document.getElementById("title");
-            div1.innerHTML = '';
-            let div2 = document.getElementById("summarized");
-            div2.innerHTML = '';
+            //Remove element inner content
+            let element = document.getElementById("summarized");
+            element.innerHTML = '';
+            let text = document.createTextNode("Processing");
+            element.appendChild(text)
+            //
             let data = buildBody();
             post(
                 'http://localhost:5000/summarize',
                 data
             ).then(
-                res => {
-                    console.log(res.summarized);
-                    //
-                    let tag_p = document.createElement("p");
-                    let text = document.createTextNode("Results");
-                    tag_p.appendChild(text);
-                    let tag_strong = document.createElement("strong");
-                    tag_strong.appendChild(tag_p);
-                    let element = document.getElementById("title");
-                    element.appendChild(tag_strong);
-                    //
-                    let tag_textarea = document.createElement("textarea");
-                    tag_textarea.setAttribute("readonly", "true");
-                    tag_textarea.setAttribute("type", "text");
-                    tag_textarea.setAttribute("rows", "10")
-                    tag_textarea.setAttribute("class", "form-control text-justify");
-                    let txt = document.createTextNode(res.summarized);
-                    tag_textarea.appendChild(txt);
-                    let elm = document.getElementById("summarized");
-                    elm.appendChild(tag_textarea);
-                }
+                res => set_outout(res.summarized)
             ).catch(
-                err => alert(err)
+                err => set_outout(null)
             )
+        }
+        function set_outout(summarized) {
+            let element = document.getElementById("summarized");
+            element.innerHTML = '';
+            if (summarized === null) return;
+            let text = document.createTextNode(summarized);
+            element.appendChild(text);
         }
         async function post(url = '', data = {}) {
             const resp = await fetch(
