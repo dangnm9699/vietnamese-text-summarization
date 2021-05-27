@@ -7,3 +7,5 @@ neuralcoref==4.0
 argparse
 scikit-learn
 pyvi
+torch
+flask
