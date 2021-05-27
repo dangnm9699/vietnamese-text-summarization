@@ -29,9 +29,13 @@ def summarizer():
     data = request.json
     ratio = float(data["ratio"])
     min_length = int(data["min_length"])
-    body = data["body"]
+    body = str(data["body"])
+    paragraph = ""
+    for line in body.splitlines():
+        paragraph += line.strip()
+
     result = ''.join(model(
-        body,
+        paragraph,
         ratio,
         min_length
     ))
