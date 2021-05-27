@@ -60,6 +60,10 @@
         form.addEventListener('submit', getSummarizeResponse);
         function getSummarizeResponse(e) {
             e.preventDefault();
+            let div1 = document.getElementById("title");
+            div1.innerHTML = '';
+            let div2 = document.getElementById("summarized");
+            div2.innerHTML = '';
             let data = buildBody();
             post(
                 'http://localhost:5000/summarize',
