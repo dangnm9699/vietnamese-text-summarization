@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+    <script src="/static/jquery/jquery-3.6.0.slim.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <title>NLP6{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <div class="container-fluid" style="padding: 0;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Nhóm 6</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bert">BERT<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/knn">KNN<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid" style="padding: 0;">
+        <div id="title" class="row mt-3 justify-content-center">
+            <h2><strong>Tóm tắt văn bản Tiếng Việt</strong></h2>
+        </div>
+        <div id="info" class="row mt-3 justify-content-center">
+            <div class="col-md-3">
+                <div class="row"><a style="margin: auto;">Nguyễn Minh Đăng</a></div>
+                <div class="row"><a style="margin: auto;">Nguyễn Văn Lương</a></div>
+            </div>
+            <div class="col-md-3">
+                <div class="row"><a style="margin: auto;">Bùi Minh Tuấn</a></div>
+                <div class="row"><a style="margin: auto;">Võ Đức Quân</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="padding: 0;">
+        {% block main %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

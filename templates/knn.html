@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Word Embedding ft. KNN
+{% endblock %}
+
+{% block main %}
+<div class="row mt-3 justify-content-center">
+    <h4><strong>Word Embedding ft. KNN</strong></h4>
+</div>
+<div id="main-screen" class="row mt-3" style="width: 90%; margin: auto;">
+    <div id="input" class="col-md-6">
+        <div class="row mt-3 justify-content-center">
+            <h2><strong><u>INPUT</u></strong></h2>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md">
+                <form id="form-id" method="POST">
+                    <div class="row mt-3">
+                        <div class="col-md-6 form-group">
+                            <label>Number of clusters</label>
+                            <input id="n_clusters" required name="n_clusters" type="number" min="4" max="8" step="1"
+                                placeholder="Enter ratio" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md form-group">
+                            <label>Paragraph</label>
+                            <textarea id="body" required name="body" type="text" rows="15" style="resize: none;"
+                                placeholder="Enter your paragraph" class="form-control text-justify"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3 justify-content-center">
+                        <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="output" class="col-md-6">
+        <div class="row mt-3 justify-content-center">
+            <h2><strong><u>OUTPUT</u></strong></h2>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md">
+                <div class="row mt-3">
+                    <div class="col-md-6 form-group">
+                        <label>Input 1</label>
+                        <input placeholder="Enter input 1" class="form-control" />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Input 2</label>
+                        <input placeholder="Enter input 2" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md form-group">
+                        <label>Summarized Paragraph</label>
+                        <textarea id="summarized" readonly name="body" type="text" rows="15" style="resize: none;"
+                            placeholder="Output here" class="form-control text-justify"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var form = document.getElementById('form-id');
+    form.addEventListener('submit', getSummarizeResponse);
+    function getSummarizeResponse(e) {
+        e.preventDefault();
+        //Remove element inner content
+        let element = document.getElementById("summarized");
+        element.innerHTML = '';
+        let text = document.createTextNode("Processing");
+        element.appendChild(text)
+        //
+        let data = buildBody();
+        post(
+            'http://localhost:5000/knn',
+            data
+        ).then(
+            res => set_outout(res.summarized)
+        ).catch(
+            err => set_outout(null)
+        )
+    }
+    function set_outout(summarized) {
+        let element = document.getElementById("summarized");
+        element.innerHTML = '';
+        if (summarized === null) return;
+        let text = document.createTextNode(summarized);
+        element.appendChild(text);
+    }
+    async function post(url = '', data = {}) {
+        const resp = await fetch(
+            url,
+            {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(data)
+            }
+        );
+        return resp.json();
+    }
+    function buildBody() {
+        let n_clusters = document.getElementById('n_clusters').value;
+        let body = document.getElementById('body').value;
+        let data = {
+            "n_clusters": n_clusters,
+            "body": body
+        };
+        return data;
+    }
+</script>
+{% endblock %}
