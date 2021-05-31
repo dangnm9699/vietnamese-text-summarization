@@ -303,7 +303,7 @@ Score
                 'http://localhost:5000/score?model=bert',
                 data
             ).then(
-                res => set_outout(res['model-summarized'], res["manual-summaried"], res['paragraph'], res['p'], res['r'], res['f1'])
+                res => set_outout(res['model-summarized'], res["manual-summarized"], res['paragraph'], res['p'], res['r'], res['f1'])
             ).catch(
                 err => set_outout('Error')
             )
@@ -313,7 +313,7 @@ Score
                 'http://localhost:5000/score?model=knn',
                 data
             ).then(
-                res => set_outout(res['model-summarized'], res["manual-summaried"], res['paragraph'], res['p'], res['r'], res['f1'])
+                res => set_outout(res['model-summarized'], res["manual-summarized"], res['paragraph'], res['p'], res['r'], res['f1'])
             ).catch(
                 err => set_outout('Error')
             )

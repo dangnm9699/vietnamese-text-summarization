@@ -84,7 +84,7 @@ def score_post():
         p, r, f1 = rouge_score_compute(bert_summary, manual_summary, 'l')
         resp = {
             "model-summarized": bert_summary,
-            "manual-summaried": manual_summary,
+            "manual-summarized": manual_summary,
             "paragraph": plaintext,
             "p": p,
             "r": r,
