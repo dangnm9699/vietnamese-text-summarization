@@ -9,3 +9,4 @@ scikit-learn
 pyvi
 torch
 flask
+bert_score
