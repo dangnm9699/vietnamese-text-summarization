@@ -69,7 +69,7 @@ def score_post():
         file.close()
         for line in plaintext.splitlines():
             line = line.strip()
-            if line[-1:] != '.':
+            if line != '' and line[-1:] != '.':
                 line = line + '.'
             bert_summary += line.strip()
         file = open(manual_summary_dir, 'r')
@@ -78,7 +78,7 @@ def score_post():
         bert_summary = ''.join(model(
             body=bert_summary,
             ratio=ratio,
-            min_length=min_length
+            min_length=0
         ))
         bert_summary = bert_summary.replace('_', ' ')
         p, r, f1 = rouge_score_compute(bert_summary, manual_summary, 'l')
@@ -193,14 +193,14 @@ def bert_post():
     paragraph = ""
     for line in body.splitlines():
         line = line.strip()
-        if line[-1:] != '.':
+        if line != '' and line[-1:] != '.':
             line = line + '.'
         paragraph += line.strip()
 
     result = ''.join(model(
         paragraph,
         ratio,
-        min_length
+        min_length=0
     ))
     result = result.replace('_', ' ')
     resp = {
