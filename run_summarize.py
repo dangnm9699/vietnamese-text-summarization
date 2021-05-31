@@ -14,12 +14,12 @@ for i in range(1, 36):
 
     title = ""
     paragraph = ""
-    
+
     with open(filename, encoding='utf-8') as f:
         title = f.readline()
         for line in f:
             paragraph += line.strip()
-    
+
     result = ''.join(model(body=paragraph, ratio=0.4, min_length=30))
     result = result.replace('_', ' ')
 
@@ -28,8 +28,7 @@ for i in range(1, 36):
     else:
         filename_output = SUMMARY_DIR + "/" + "XH" + str(i) + ".txt"
 
-
     with open(filename_output, "w", encoding='utf-8') as f:
         f.write(result)
-    
+
     print(i)

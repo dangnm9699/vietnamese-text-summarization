@@ -1,0 +1,453 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Score
+{% endblock %}
+
+{% block main %}
+<div class="row mt-3 justify-content-center">
+    <h4><strong>Score</strong></h4>
+</div>
+<div id="main-screen" class="container-fluid" style="width: 90%;">
+    <div class="row mt-3">
+        <div class="col-md-6 form-group">
+            <label>Data</label>
+            <select id="data" class="form-control">
+                <option disabled selected value="none"> -- option an option -- </option>
+                <option>Chinh tri/CT01.txt</option>
+                <option>Chinh tri/CT02.txt</option>
+                <option>Chinh tri/CT03.txt</option>
+                <option>Chinh tri/CT04.txt</option>
+                <option>Chinh tri/CT05.txt</option>
+                <option>Chinh tri/CT06.txt</option>
+                <option>Chinh tri/CT07.txt</option>
+                <option>Chinh tri/CT08.txt</option>
+                <option>Chinh tri/CT09.txt</option>
+                <option>Chinh tri/CT10.txt</option>
+                <option>Chinh tri/CT11.txt</option>
+                <option>Chinh tri/CT12.txt</option>
+                <option>Chinh tri/CT13.txt</option>
+                <option>Chinh tri/CT14.txt</option>
+                <option>Chinh tri/CT15.txt</option>
+                <option>Chinh tri/CT16.txt</option>
+                <option>Chinh tri/CT17.txt</option>
+                <option>Chinh tri/CT18.txt</option>
+                <option>Chinh tri/CT19.txt</option>
+                <option>Chinh tri/CT20.txt</option>
+                <option>Chinh tri/CT21.txt</option>
+                <option>Chinh tri/CT22.txt</option>
+                <option>Chinh tri/CT23.txt</option>
+                <option>Chinh tri/CT24.txt</option>
+                <option>Chinh tri/CT25.txt</option>
+                <option>Chinh tri/CT26.txt</option>
+                <option>Chinh tri/CT27.txt</option>
+                <option>Chinh tri/CT28.txt</option>
+                <option>Chinh tri/CT29.txt</option>
+                <option>Chinh tri/CT30.txt</option>
+                <option>Chinh tri/CT31.txt</option>
+                <option>Van Hoa/VH01.txt</option>
+                <option>Van Hoa/VH02.txt</option>
+                <option>Van Hoa/VH03.txt</option>
+                <option>Van Hoa/VH04.txt</option>
+                <option>Van Hoa/VH05.txt</option>
+                <option>Van Hoa/VH06.txt</option>
+                <option>Van Hoa/VH07.txt</option>
+                <option>Van Hoa/VH08.txt</option>
+                <option>Van Hoa/VH09.txt</option>
+                <option>Van Hoa/VH10.txt</option>
+                <option>Van Hoa/VH11.txt</option>
+                <option>Van Hoa/VH12.txt</option>
+                <option>Van Hoa/VH13.txt</option>
+                <option>Van Hoa/VH14.txt</option>
+                <option>Van Hoa/VH15.txt</option>
+                <option>Van Hoa/VH16.txt</option>
+                <option>Van Hoa/VH17.txt</option>
+                <option>Van Hoa/VH18.txt</option>
+                <option>Van Hoa/VH19.txt</option>
+                <option>Van Hoa/VH20.txt</option>
+                <option>Van Hoa/VH21.txt</option>
+                <option>Van Hoa/VH22.txt</option>
+                <option>Van Hoa/VH23.txt</option>
+                <option>Van Hoa/VH24.txt</option>
+                <option>Van Hoa/VH25.txt</option>
+                <option>Van Hoa/VH26.txt</option>
+                <option>Van Hoa/VH27.txt</option>
+                <option>Van Hoa/VH28.txt</option>
+                <option>Van Hoa/VH29.txt</option>
+                <option>Van Hoa/VH30.txt</option>
+                <option>Van Hoa/VH31.txt</option>
+                <option>Van Hoa/VH32.txt</option>
+                <option>Van Hoa/VH33.txt</option>
+                <option>Van Hoa/VH34.txt</option>
+                <option>Xa Hoi/XH01.txt</option>
+                <option>Xa Hoi/XH02.txt</option>
+                <option>Xa Hoi/XH03.txt</option>
+                <option>Xa Hoi/XH04.txt</option>
+                <option>Xa Hoi/XH05.txt</option>
+                <option>Xa Hoi/XH06.txt</option>
+                <option>Xa Hoi/XH07.txt</option>
+                <option>Xa Hoi/XH08.txt</option>
+                <option>Xa Hoi/XH09.txt</option>
+                <option>Xa Hoi/XH10.txt</option>
+                <option>Xa Hoi/XH11.txt</option>
+                <option>Xa Hoi/XH12.txt</option>
+                <option>Xa Hoi/XH13.txt</option>
+                <option>Xa Hoi/XH14.txt</option>
+                <option>Xa Hoi/XH15.txt</option>
+                <option>Xa Hoi/XH16.txt</option>
+                <option>Xa Hoi/XH17.txt</option>
+                <option>Xa Hoi/XH18.txt</option>
+                <option>Xa Hoi/XH19.txt</option>
+                <option>Xa Hoi/XH20.txt</option>
+                <option>Xa Hoi/XH21.txt</option>
+                <option>Xa Hoi/XH22.txt</option>
+                <option>Xa Hoi/XH23.txt</option>
+                <option>Xa Hoi/XH24.txt</option>
+                <option>Xa Hoi/XH25.txt</option>
+                <option>Xa Hoi/XH26.txt</option>
+                <option>Xa Hoi/XH27.txt</option>
+                <option>Xa Hoi/XH28.txt</option>
+                <option>Xa Hoi/XH29.txt</option>
+                <option>Xa Hoi/XH30.txt</option>
+                <option>Xa Hoi/XH31.txt</option>
+                <option>Xa Hoi/XH32.txt</option>
+                <option>Xa Hoi/XH33.txt</option>
+                <option>Xa Hoi/XH34.txt</option>
+                <option>Xa Hoi/XH35.txt</option>
+                <option>boKHCN/khcn1.txt</option>
+                <option>boKHCN/khcn10.txt</option>
+                <option>boKHCN/khcn11.txt</option>
+                <option>boKHCN/khcn12.txt</option>
+                <option>boKHCN/khcn13.txt</option>
+                <option>boKHCN/khcn14.txt</option>
+                <option>boKHCN/khcn15.txt</option>
+                <option>boKHCN/khcn16.txt</option>
+                <option>boKHCN/khcn17.txt</option>
+                <option>boKHCN/khcn18.txt</option>
+                <option>boKHCN/khcn19.txt</option>
+                <option>boKHCN/khcn2.txt</option>
+                <option>boKHCN/khcn20.txt</option>
+                <option>boKHCN/khcn21.txt</option>
+                <option>boKHCN/khcn22.txt</option>
+                <option>boKHCN/khcn23.txt</option>
+                <option>boKHCN/khcn24.txt</option>
+                <option>boKHCN/khcn25.txt</option>
+                <option>boKHCN/khcn3.txt</option>
+                <option>boKHCN/khcn4.txt</option>
+                <option>boKHCN/khcn5.txt</option>
+                <option>boKHCN/khcn6.txt</option>
+                <option>boKHCN/khcn7.txt</option>
+                <option>boKHCN/khcn8.txt</option>
+                <option>boKHCN/khcn9.txt</option>
+                <option>khoahoc_giaoduc/KHGD1.txt</option>
+                <option>khoahoc_giaoduc/KHGD10.txt</option>
+                <option>khoahoc_giaoduc/KHGD11.txt</option>
+                <option>khoahoc_giaoduc/KHGD12.txt</option>
+                <option>khoahoc_giaoduc/KHGD13.txt</option>
+                <option>khoahoc_giaoduc/KHGD14.txt</option>
+                <option>khoahoc_giaoduc/KHGD15.txt</option>
+                <option>khoahoc_giaoduc/KHGD16.txt</option>
+                <option>khoahoc_giaoduc/KHGD17.txt</option>
+                <option>khoahoc_giaoduc/KHGD18.txt</option>
+                <option>khoahoc_giaoduc/KHGD19.txt</option>
+                <option>khoahoc_giaoduc/KHGD2.txt</option>
+                <option>khoahoc_giaoduc/KHGD20.txt</option>
+                <option>khoahoc_giaoduc/KHGD21.txt</option>
+                <option>khoahoc_giaoduc/KHGD22.txt</option>
+                <option>khoahoc_giaoduc/KHGD3.txt</option>
+                <option>khoahoc_giaoduc/KHGD4.txt</option>
+                <option>khoahoc_giaoduc/KHGD5.txt</option>
+                <option>khoahoc_giaoduc/KHGD6.txt</option>
+                <option>khoahoc_giaoduc/KHGD7.txt</option>
+                <option>khoahoc_giaoduc/KHGD8.txt</option>
+                <option>khoahoc_giaoduc/KHGD9.txt</option>
+                <option>kinhte/KT1.txt</option>
+                <option>kinhte/KT10.txt</option>
+                <option>kinhte/KT11.txt</option>
+                <option>kinhte/KT12.txt</option>
+                <option>kinhte/KT13.txt</option>
+                <option>kinhte/KT14.txt</option>
+                <option>kinhte/KT15.txt</option>
+                <option>kinhte/KT16.txt</option>
+                <option>kinhte/KT17.txt</option>
+                <option>kinhte/KT18.txt</option>
+                <option>kinhte/KT19.txt</option>
+                <option>kinhte/KT2.txt</option>
+                <option>kinhte/KT20.txt</option>
+                <option>kinhte/KT21.txt</option>
+                <option>kinhte/KT22.txt</option>
+                <option>kinhte/KT23.txt</option>
+                <option>kinhte/KT24.txt</option>
+                <option>kinhte/KT25.txt</option>
+                <option>kinhte/KT26.txt</option>
+                <option>kinhte/KT27.txt</option>
+                <option>kinhte/KT28.txt</option>
+                <option>kinhte/KT29.txt</option>
+                <option>kinhte/KT3.txt</option>
+                <option>kinhte/KT30.txt</option>
+                <option>kinhte/KT31.txt</option>
+                <option>kinhte/KT32.txt</option>
+                <option>kinhte/KT33.txt</option>
+                <option>kinhte/KT34.txt</option>
+                <option>kinhte/KT35.txt</option>
+                <option>kinhte/KT36.txt</option>
+                <option>kinhte/KT37.txt</option>
+                <option>kinhte/KT38.txt</option>
+                <option>kinhte/KT39.txt</option>
+                <option>kinhte/KT4.txt</option>
+                <option>kinhte/KT40.txt</option>
+                <option>kinhte/KT41.txt</option>
+                <option>kinhte/KT42.txt</option>
+                <option>kinhte/KT43.txt</option>
+                <option>kinhte/KT44.txt</option>
+                <option>kinhte/KT45.txt</option>
+                <option>kinhte/KT46.txt</option>
+                <option>kinhte/KT47.txt</option>
+                <option>kinhte/KT48.txt</option>
+                <option>kinhte/KT49.txt</option>
+                <option>kinhte/KT5.txt</option>
+                <option>kinhte/KT50.txt</option>
+                <option>kinhte/KT51.txt</option>
+                <option>kinhte/KT52.txt</option>
+                <option>kinhte/KT53.txt</option>
+                <option>kinhte/KT6.txt</option>
+                <option>kinhte/KT7.txt</option>
+                <option>kinhte/KT8.txt</option>
+                <option>kinhte/KT9.txt</option>
+            </select>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Model</label>
+            <select id="model" class="form-control" onchange="onChangeModel(this)">
+                <option disabled selected value="none"> -- option an option -- </option>
+                <option value="bert">BERT</option>
+                <option value="knn">KNN</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md">
+            <form id="form-id" method="POST">
+                <div id="switch-model" class="row mt-3">
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md form-group">
+                        <label>Paragraph</label>
+                        <textarea id="paragraph" name="paragraph" type="text" rows="15" style="resize: none;" readonly
+                            required class="form-control text-justify"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3 justify-content-center">
+                    <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4 form-group">
+            <label>Precision</label>
+            <input id="p" required name="p" placeholder="Precision score" class="form-control" readonly />
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Recall</label>
+            <input id="r" required name="r" placeholder="Recall score" class="form-control" readonly />
+        </div>
+        <div class="col-md-4 form-group">
+            <label>F1</label>
+            <input id="f1" required name="f1" placeholder="F1 score" class="form-control" readonly />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6 form-group">
+            <label>Model summarized paragraph</label>
+            <textarea id="model-summarized" name="model-summarized" type="text" rows="10" style="resize: none;" readonly
+                class="form-control text-justify"></textarea>
+        </div>
+        <div class="col-md-6">
+            <label>Mannual summarized paragraph</label>
+            <textarea id="manual-summarized" name="manual-summarized" type="text" rows="10" style="resize: none;"
+                readonly class="form-control text-justify"></textarea>
+        </div>
+    </div>
+    <div class="row mt-3">
+
+    </div>
+</div>
+<script>
+    var form = document.getElementById('form-id');
+    form.addEventListener('submit', submit);
+    function submit(e) {
+        e.preventDefault();
+        let opts = document.getElementById('data');
+        let data = opts.options[opts.selectedIndex].text;
+        console.log(data)
+        if (data === '-- option an option --') {
+            alert('Please choose data');
+            return;
+        }
+        opts = document.getElementById('model');
+        let model = opts.options[opts.selectedIndex].value;
+        if (model === 'none') {
+            alert('Please choose model');
+            return;
+        }
+        let element = document.getElementById("model-summarized");
+        element.innerHTML = '';
+        let text = document.createTextNode("Processing");
+        element.appendChild(text)
+        //
+        if (model === 'bert') {
+            let data = buildBertRequestData();
+            post(
+                'http://localhost:5000/score?model=bert',
+                data
+            ).then(
+                res => set_outout(res['model-summarized'], res["manual-summaried"], res['paragraph'], res['p'], res['r'], res['f1'])
+            ).catch(
+                err => set_outout('Error')
+            )
+        } else {
+            let data = buildKnnRequestData();
+            post(
+                'http://localhost:5000/score?model=knn',
+                data
+            ).then(
+                res => set_outout(res['model-summarized'], res["manual-summaried"], res['paragraph'], res['p'], res['r'], res['f1'])
+            ).catch(
+                err => set_outout('Error')
+            )
+        }
+
+    }
+    function set_outout(summarized, sample, paragraph, p, r, f1) {
+        let element = document.getElementById("model-summarized");
+        element.innerHTML = '';
+        document.getElementById("p").value = '';
+        document.getElementById("r").value = '';
+        document.getElementById("f1").value = '';
+        if (summarized === null) return;
+        let text = document.createTextNode(summarized);
+        element.appendChild(text);
+        let elm = document.getElementById("paragraph")
+        elm.innerHTML = '';
+        if (paragraph === null) return;
+        let txt = document.createTextNode(paragraph);
+        elm.appendChild(txt);
+        let spl = document.getElementById("manual-summarized");
+        spl.innerHTML = '';
+        let txtt = document.createTextNode(sample);
+        spl.appendChild(txtt);
+        //
+        document.getElementById("p").value = p;
+        document.getElementById("r").value = r;
+        document.getElementById("f1").value = f1;
+    }
+    async function post(url = '', data = {}) {
+        const resp = await fetch(
+            url,
+            {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(data)
+            }
+        );
+        return resp.json();
+    }
+    function buildKnnRequestData() {
+        let n_clusters = document.getElementById('n_clusters').value;
+        let data_path = document.getElementById('data');
+        let data = {
+            "n_clusters": n_clusters,
+            "path": data_path.options[data_path.selectedIndex].text
+        };
+        return data;
+    }
+    function buildBertRequestData() {
+        let ratio = document.getElementById('ratio').value;
+        let min_length = document.getElementById('min_length').value;
+        let data_path = document.getElementById('data');
+        let data = {
+            "ratio": ratio,
+            "min_length": min_length,
+            "path": data_path.options[data_path.selectedIndex].text
+        };
+        return data;
+    }
+    function onChangeModel(options) {
+        //Get options
+        let opt = options.options[options.selectedIndex].value;
+        let switch_model = document.getElementById('switch-model');
+        //Remove innerHTML
+        switch_model.innerHTML = '';
+        //Create children based on "opt"
+        switch (opt) {
+            case 'bert':
+                let ratio = document.createElement('div');
+                ratio.setAttribute("class", "col-md-6 form-group");
+                let label_ratio = document.createElement('label');
+                label_ratio.appendChild(document.createTextNode('Ratio'));
+                let input_ratio = document.createElement('input');
+                input_ratio.setAttribute("id", "ratio");
+                input_ratio.setAttribute("required", true);
+                input_ratio.setAttribute("name", "ratio");
+                input_ratio.setAttribute("type", "number");
+                input_ratio.setAttribute("min", "0.3");
+                input_ratio.setAttribute("max", "0.4");
+                input_ratio.setAttribute("step", "0.01");
+                input_ratio.setAttribute("placeholder", "Enter ratio");
+                input_ratio.setAttribute("class", "form-control");
+                ratio.appendChild(label_ratio);
+                ratio.appendChild(input_ratio);
+
+                let ml = document.createElement('div');
+                ml.setAttribute("class", "col-md-6 form-group");
+                let label_ml = document.createElement('label');
+                label_ml.appendChild(document.createTextNode('Min Length'));
+                let input_ml = document.createElement('input');
+                input_ml.setAttribute("id", "min_length");
+                input_ml.setAttribute("required", true);
+                input_ml.setAttribute("name", "min_length");
+                input_ml.setAttribute("type", "number");
+                input_ml.setAttribute("min", "30");
+                input_ml.setAttribute("max", "50");
+                input_ml.setAttribute("step", "1");
+                input_ml.setAttribute("placeholder", "Enter minium length");
+                input_ml.setAttribute("class", "form-control");
+                ml.appendChild(label_ml);
+                ml.appendChild(input_ml);
+
+                switch_model.appendChild(ratio)
+                switch_model.appendChild(ml);
+                break;
+            case 'knn':
+                let nc = document.createElement('div');
+                nc.setAttribute("class", "col-md form-group");
+                let label_nc = document.createElement('label');
+                label_nc.appendChild(document.createTextNode('Number of clusters'));
+                let input_nc = document.createElement('input');
+                input_nc.setAttribute("id", "n_clusters");
+                input_nc.setAttribute("required", true);
+                input_nc.setAttribute("name", "n_clusters");
+                input_nc.setAttribute("type", "number");
+                input_nc.setAttribute("min", "4");
+                input_nc.setAttribute("max", "8");
+                input_nc.setAttribute("step", "1");
+                input_nc.setAttribute("placeholder", "Enter number of clusters");
+                input_nc.setAttribute("class", "form-control");
+                nc.appendChild(label_nc);
+                nc.appendChild(input_nc);
+
+                switch_model.appendChild(nc)
+                break;
+        }
+    }
+</script>
+{% endblock %}
