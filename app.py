@@ -7,7 +7,7 @@ from gensim.models import KeyedVectors
 from sklearn.cluster import KMeans
 from sklearn.metrics import pairwise_distances_argmin_min
 import pickle
-from revolution_score import rouge_score_compute
+from revolution_score import bert_score_compute, rouge_score_compute
 from pyvi import ViTokenizer
 import numpy as np
 from summarizer import Summarizer
@@ -56,54 +56,38 @@ def score_get():
 
 @app.route('/score', methods=['POST'])
 def score_post():
-    selected_model = request.args.get('model')
-    if selected_model == 'bert':
-        request_data = request.json
-        ratio = float(request_data["ratio"])
-        min_length = int(request_data["min_length"])
-        plaintext_dir = DATA_DIR + str(request_data["path"])
-        manual_summary_dir = MANUAL_DIR + str(request_data["path"])
-        file = open(plaintext_dir, 'r')
-        plaintext = file.read()
-        bert_summary = ""
-        file.close()
-        for line in plaintext.splitlines():
-            line = line.strip()
-            if line != '' and line[-1:] != '.':
-                line = line + '.'
-            bert_summary += line.strip()
-        file = open(manual_summary_dir, 'r')
-        manual_summary = file.read()
-        file.close()
-        bert_summary = ''.join(model(
-            body=bert_summary,
-            ratio=ratio,
-            min_length=0
+    request_data = request.json
+    plaintext_dir = DATA_DIR + str(request_data["plaintext_dir"])
+    manual_summary_dir = MANUAL_DIR + str(request_data["plaintext_dir"])
+    print(plaintext_dir, manual_summary_dir)
+    modeling = str(request_data["model"])
+    method = str(request_data["method"])
+
+    file = open(plaintext_dir, 'r')
+    plaintext = file.read()
+    file.close()
+    file = open(manual_summary_dir, 'r')
+    manual_summary = file.read()
+    file.close()
+
+    m_s = process(manual_summary)
+    processed = process(plaintext)
+
+    sentences = nltk.sent_tokenize(m_s)
+
+    nsum1 = len(sentences)
+    print(nsum1, end=' ')
+    summary = ""
+
+    if modeling == 'bert':
+        summary = ''.join(model(
+            body=processed,
+            ratio=float(nsum1),
+            min_length=0,
+            use_first=False
         ))
-        bert_summary = bert_summary.replace('_', ' ')
-        p, r, f1 = rouge_score_compute(bert_summary, manual_summary, 'l')
-        resp = {
-            "model-summarized": bert_summary,
-            "manual-summarized": manual_summary,
-            "paragraph": plaintext,
-            "p": p,
-            "r": r,
-            "f1": f1
-        }
-        return jsonify(resp)
-    else:
-        request_data = request.json
-        plaintext_dir = DATA_DIR + str(request_data["path"])
-        manual_summary_dir = MANUAL_DIR + str(request_data["path"])
-        n_clusters = int(request_data["n_clusters"])
-        # Read body
-        file = open(plaintext_dir, 'r')
-        plaintext = file.read()
-        file.close()
-        file = open(manual_summary_dir, 'r')
-        manual_summary = file.read()
-        file.close()
-        sentences = nltk.sent_tokenize(plaintext)
+        summary = summary.replace('_', ' ')
+    if modeling == 'word2vec':
         X = []
         for sentence in sentences:
             sentence = ViTokenizer.tokenize(sentence)
@@ -114,33 +98,45 @@ def score_post():
                     sentence_vec += vocab[word]
                     break
             X.append(sentence_vec)
-        kmeans = KMeans(n_clusters=n_clusters)
+        kmeans = KMeans(n_clusters=nsum1)
         kmeans.fit(X)
 
         avg = []
-        for j in range(n_clusters):
+        for j in range(nsum1):
             idx = np.where(kmeans.labels_ == j)[0]
             avg.append(np.mean(idx))
         closest, _ = pairwise_distances_argmin_min(kmeans.cluster_centers_, X)
-        ordering = sorted(range(n_clusters), key=lambda k: avg[k])
+        ordering = sorted(range(nsum1), key=lambda k: avg[k])
         summary = ' '.join([sentences[closest[idx]] for idx in ordering])
+    summary = summary.replace('...', '')
+    print(len(summary.strip().split('. ')))
+    p, r, f1 = 0, 0, 0
+
+    print(m_s)
+    print(summary)
+
+    if method == 'bert':
+        p, r, f1 = bert_score_compute(summary, manual_summary, 'vi')
+    if method == 'rouge':
         p, r, f1 = rouge_score_compute(summary, manual_summary, 'l')
-        return jsonify({
-            "model-summarized": ''.join(summary),
-            "manual-summarized": manual_summary,
-            "paragraph": plaintext,
-            "p": p,
-            "r": r,
-            "f1": f1
-        })
+
+    resp = {
+        "model-summarized": summary,
+        "manual-summarized": m_s,
+        "paragraph": plaintext,
+        "p": p,
+        "r": r,
+        "f1": f1
+    }
+    return jsonify(resp)
 
 
-@app.route('/knn', methods=['GET'])
+@app.route('/word2vec', methods=['GET'])
 def knn_get():
     return render_template('knn.html')
 
 
-@app.route('/knn', methods=['POST'])
+@app.route('/word2vec', methods=['POST'])
 def knn_post():
     data = request.json
     body = str(data["body"])
@@ -174,16 +170,6 @@ def bert_get():
     return render_template('bert.html')
 
 
-'''
-    Summarize API
-    request body = {
-        body: '',
-        ratio: 0.4,
-        min_length: 30
-    }
-'''
-
-
 @app.route('/bert', methods=['POST'])
 def bert_post():
     data = request.json
@@ -200,10 +186,20 @@ def bert_post():
     result = ''.join(model(
         paragraph,
         ratio,
-        min_length=0
+        min_length=min_length
     ))
     result = result.replace('_', ' ')
     resp = {
         "summarized": result
     }
     return jsonify(resp)
+
+
+def process(para: str):
+    processed = ''
+    for line in para.splitlines():
+        line = line.strip()
+        if line != '' and line[-1] != '.':
+            line = line + '.'
+        processed += line.strip()
+    return processed

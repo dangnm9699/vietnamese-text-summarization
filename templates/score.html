@@ -10,7 +10,7 @@ Score
 </div>
 <div id="main-screen" class="container-fluid" style="width: 90%;">
     <div class="row mt-3">
-        <div class="col-md-6 form-group">
+        <div class="col-md-4 form-group">
             <label>Data</label>
             <select id="data" class="form-control">
                 <option disabled selected value="none"> -- option an option -- </option>
@@ -216,12 +216,20 @@ Score
                 <option>kinhte/KT9.txt</option>
             </select>
         </div>
-        <div class="col-md-6 form-group">
+        <div class="col-md-4 form-group">
             <label>Model</label>
-            <select id="model" class="form-control" onchange="onChangeModel(this)">
+            <select id="model" class="form-control">
                 <option disabled selected value="none"> -- option an option -- </option>
-                <option value="bert">BERT</option>
-                <option value="knn">KNN</option>
+                <option value="bert">BERT + KMeans</option>
+                <option value="word2vec">Word2Vec + KMeans</option>
+            </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Method</label>
+            <select id="method" class="form-control">
+                <option disabled selected value="none"> -- option an option -- </option>
+                <option value="bert">BERT Score</option>
+                <option value="rouge">Rouge Score</option>
             </select>
         </div>
     </div>
@@ -279,46 +287,55 @@ Score
     form.addEventListener('submit', submit);
     function submit(e) {
         e.preventDefault();
-        let opts = document.getElementById('data');
-        let data = opts.options[opts.selectedIndex].text;
-        console.log(data)
-        if (data === '-- option an option --') {
+        let data_opts = document.getElementById('data');
+        let plaintext_dir = data_opts.options[data_opts.selectedIndex].text;
+        console.log(plaintext_dir)
+        if (plaintext_dir === '-- option an option --') {
             alert('Please choose data');
             return;
         }
-        opts = document.getElementById('model');
-        let model = opts.options[opts.selectedIndex].value;
+        let model_opts = document.getElementById('model');
+        let model = model_opts.options[model_opts.selectedIndex].value;
         if (model === 'none') {
             alert('Please choose model');
             return;
         }
-        let element = document.getElementById("model-summarized");
-        element.innerHTML = '';
-        let text = document.createTextNode("Processing");
-        element.appendChild(text)
-        //
-        if (model === 'bert') {
-            let data = buildBertRequestData();
-            post(
-                'http://localhost:5000/score?model=bert',
-                data
-            ).then(
-                res => set_outout(res['model-summarized'], res["manual-summarized"], res['paragraph'], res['p'], res['r'], res['f1'])
-            ).catch(
-                err => set_outout('Error')
-            )
-        } else {
-            let data = buildKnnRequestData();
-            post(
-                'http://localhost:5000/score?model=knn',
-                data
-            ).then(
-                res => set_outout(res['model-summarized'], res["manual-summarized"], res['paragraph'], res['p'], res['r'], res['f1'])
-            ).catch(
-                err => set_outout('Error')
-            )
+        let method_opts = document.getElementById('method');
+        let method = method_opts.options[method_opts.selectedIndex].value;
+        if (method === 'none') {
+            alert('Please choose method');
+            return;
         }
+        let e_model_summarized = document.getElementById("model-summarized");
+        e_model_summarized.innerHTML = '';
+        let text = document.createTextNode("Processing");
+        e_model_summarized.appendChild(text)
+        //
+        let data = buildRequestData();
+        post(
+            'http://localhost:5000/score',
+            data
+        ).then(
+            res => set_outout(res['model-summarized'], res["manual-summarized"], res['paragraph'], res['p'], res['r'], res['f1'])
+        ).catch(
+            err => set_outout('Error')
+        )
 
+    }
+    function buildRequestData() {
+        let data_opts = document.getElementById('data');
+        let plaintext_dir = data_opts.options[data_opts.selectedIndex].text;
+        let model_opts = document.getElementById('model');
+        let model = model_opts.options[model_opts.selectedIndex].value;
+        let method_opts = document.getElementById('method');
+        let method = method_opts.options[method_opts.selectedIndex].value;
+        let data = {
+            "plaintext_dir": plaintext_dir,
+            "model": model,
+            "method": method
+        };
+        console.log(data)
+        return data;
     }
     function set_outout(summarized, sample, paragraph, p, r, f1) {
         let element = document.getElementById("model-summarized");
@@ -361,93 +378,93 @@ Score
         );
         return resp.json();
     }
-    function buildKnnRequestData() {
-        let n_clusters = document.getElementById('n_clusters').value;
-        let data_path = document.getElementById('data');
-        let data = {
-            "n_clusters": n_clusters,
-            "path": data_path.options[data_path.selectedIndex].text
-        };
-        return data;
-    }
-    function buildBertRequestData() {
-        let ratio = document.getElementById('ratio').value;
-        let min_length = document.getElementById('min_length').value;
-        let data_path = document.getElementById('data');
-        let data = {
-            "ratio": ratio,
-            "min_length": min_length,
-            "path": data_path.options[data_path.selectedIndex].text
-        };
-        return data;
-    }
-    function onChangeModel(options) {
-        //Get options
-        let opt = options.options[options.selectedIndex].value;
-        let switch_model = document.getElementById('switch-model');
-        //Remove innerHTML
-        switch_model.innerHTML = '';
-        //Create children based on "opt"
-        switch (opt) {
-            case 'bert':
-                let ratio = document.createElement('div');
-                ratio.setAttribute("class", "col-md-6 form-group");
-                let label_ratio = document.createElement('label');
-                label_ratio.appendChild(document.createTextNode('Ratio'));
-                let input_ratio = document.createElement('input');
-                input_ratio.setAttribute("id", "ratio");
-                input_ratio.setAttribute("required", true);
-                input_ratio.setAttribute("name", "ratio");
-                input_ratio.setAttribute("type", "number");
-                input_ratio.setAttribute("min", "0.1");
-                input_ratio.setAttribute("max", "0.9");
-                input_ratio.setAttribute("step", "0.01");
-                input_ratio.setAttribute("placeholder", "Enter ratio");
-                input_ratio.setAttribute("class", "form-control");
-                ratio.appendChild(label_ratio);
-                ratio.appendChild(input_ratio);
+    // function buildKnnRequestData() {
+    //     let n_clusters = document.getElementById('n_clusters').value;
+    //     let data_path = document.getElementById('data');
+    //     let data = {
+    //         "n_clusters": n_clusters,
+    //         "path": data_path.options[data_path.selectedIndex].text
+    //     };
+    //     return data;
+    // }
+    // function buildBertRequestData() {
+    //     let ratio = document.getElementById('ratio').value;
+    //     let min_length = document.getElementById('min_length').value;
+    //     let data_path = document.getElementById('data');
+    //     let data = {
+    //         "ratio": ratio,
+    //         "min_length": min_length,
+    //         "path": data_path.options[data_path.selectedIndex].text
+    //     };
+    //     return data;
+    // }
+    // function onChangeModel(options) {
+    //     //Get options
+    //     let opt = options.options[options.selectedIndex].value;
+    //     let switch_model = document.getElementById('switch-model');
+    //     //Remove innerHTML
+    //     switch_model.innerHTML = '';
+    //     //Create children based on "opt"
+    //     switch (opt) {
+    //         case 'bert':
+    //             let ratio = document.createElement('div');
+    //             ratio.setAttribute("class", "col-md-6 form-group");
+    //             let label_ratio = document.createElement('label');
+    //             label_ratio.appendChild(document.createTextNode('Ratio'));
+    //             let input_ratio = document.createElement('input');
+    //             input_ratio.setAttribute("id", "ratio");
+    //             input_ratio.setAttribute("required", true);
+    //             input_ratio.setAttribute("name", "ratio");
+    //             input_ratio.setAttribute("type", "number");
+    //             input_ratio.setAttribute("min", "0.1");
+    //             input_ratio.setAttribute("max", "0.9");
+    //             input_ratio.setAttribute("step", "0.01");
+    //             input_ratio.setAttribute("placeholder", "Enter ratio");
+    //             input_ratio.setAttribute("class", "form-control");
+    //             ratio.appendChild(label_ratio);
+    //             ratio.appendChild(input_ratio);
 
-                let ml = document.createElement('div');
-                ml.setAttribute("class", "col-md-6 form-group");
-                let label_ml = document.createElement('label');
-                label_ml.appendChild(document.createTextNode('Min Length'));
-                let input_ml = document.createElement('input');
-                input_ml.setAttribute("id", "min_length");
-                input_ml.setAttribute("required", true);
-                input_ml.setAttribute("name", "min_length");
-                input_ml.setAttribute("type", "number");
-                input_ml.setAttribute("min", "30");
-                input_ml.setAttribute("max", "60");
-                input_ml.setAttribute("step", "1");
-                input_ml.setAttribute("placeholder", "Enter minium length");
-                input_ml.setAttribute("class", "form-control");
-                ml.appendChild(label_ml);
-                ml.appendChild(input_ml);
+    //             let ml = document.createElement('div');
+    //             ml.setAttribute("class", "col-md-6 form-group");
+    //             let label_ml = document.createElement('label');
+    //             label_ml.appendChild(document.createTextNode('Min Length'));
+    //             let input_ml = document.createElement('input');
+    //             input_ml.setAttribute("id", "min_length");
+    //             input_ml.setAttribute("required", true);
+    //             input_ml.setAttribute("name", "min_length");
+    //             input_ml.setAttribute("type", "number");
+    //             input_ml.setAttribute("min", "30");
+    //             input_ml.setAttribute("max", "60");
+    //             input_ml.setAttribute("step", "1");
+    //             input_ml.setAttribute("placeholder", "Enter minium length");
+    //             input_ml.setAttribute("class", "form-control");
+    //             ml.appendChild(label_ml);
+    //             ml.appendChild(input_ml);
 
-                switch_model.appendChild(ratio)
-                switch_model.appendChild(ml);
-                break;
-            case 'knn':
-                let nc = document.createElement('div');
-                nc.setAttribute("class", "col-md form-group");
-                let label_nc = document.createElement('label');
-                label_nc.appendChild(document.createTextNode('Number of clusters'));
-                let input_nc = document.createElement('input');
-                input_nc.setAttribute("id", "n_clusters");
-                input_nc.setAttribute("required", true);
-                input_nc.setAttribute("name", "n_clusters");
-                input_nc.setAttribute("type", "number");
-                input_nc.setAttribute("min", "4");
-                input_nc.setAttribute("max", "8");
-                input_nc.setAttribute("step", "1");
-                input_nc.setAttribute("placeholder", "Enter number of clusters");
-                input_nc.setAttribute("class", "form-control");
-                nc.appendChild(label_nc);
-                nc.appendChild(input_nc);
+    //             switch_model.appendChild(ratio)
+    //             switch_model.appendChild(ml);
+    //             break;
+    //         case 'word2vec':
+    //             let nc = document.createElement('div');
+    //             nc.setAttribute("class", "col-md form-group");
+    //             let label_nc = document.createElement('label');
+    //             label_nc.appendChild(document.createTextNode('Number of clusters'));
+    //             let input_nc = document.createElement('input');
+    //             input_nc.setAttribute("id", "n_clusters");
+    //             input_nc.setAttribute("required", true);
+    //             input_nc.setAttribute("name", "n_clusters");
+    //             input_nc.setAttribute("type", "number");
+    //             input_nc.setAttribute("min", "4");
+    //             input_nc.setAttribute("max", "8");
+    //             input_nc.setAttribute("step", "1");
+    //             input_nc.setAttribute("placeholder", "Enter number of clusters");
+    //             input_nc.setAttribute("class", "form-control");
+    //             nc.appendChild(label_nc);
+    //             nc.appendChild(input_nc);
 
-                switch_model.appendChild(nc)
-                break;
-        }
-    }
+    //             switch_model.appendChild(nc)
+    //             break;
+        // }
+    // }
 </script>
 {% endblock %}

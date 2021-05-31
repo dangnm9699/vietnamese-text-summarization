@@ -58,7 +58,12 @@ class ClusterFeatures(object):
         return args
 
     def cluster(self, ratio: float = 0.1) -> List[int]:
-        k = 1 if ratio * len(self.features) < 1 else int(len(self.features) * ratio)
+        k = 0
+        if ratio <= 1:
+            k = 1 if ratio * \
+                len(self.features) < 1 else int(len(self.features) * ratio)
+        else:
+            k = int(ratio)
         model = self.__get_model(k).fit(self.features)
         centroids = self.__get_centroids(model)
         cluster_args = self.__find_closest_args(centroids)
