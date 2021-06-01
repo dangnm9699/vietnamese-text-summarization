@@ -6,7 +6,7 @@ Word Embedding ft. KNN
 
 {% block main %}
 <div class="row mt-3 justify-content-center">
-    <h4><strong>Word Embedding ft. KNN</strong></h4>
+    <h4><strong>Word2Vec + KMeans</strong></h4>
 </div>
 <div id="main-screen" class="row mt-3" style="width: 90%; margin: auto;">
     <div id="input" class="col-md-6">
@@ -73,7 +73,7 @@ Word Embedding ft. KNN
         //
         let data = buildBody();
         post(
-            'http://localhost:5000/knn',
+            'http://localhost:5000/word2vec',
             data
         ).then(
             res => set_outout(res.summarized)

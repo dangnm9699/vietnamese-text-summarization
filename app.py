@@ -88,6 +88,7 @@ def score_post():
         ))
         summary = summary.replace('_', ' ')
     if modeling == 'word2vec':
+        sentences = nltk.sent_tokenize(plaintext)
         X = []
         for sentence in sentences:
             sentence = ViTokenizer.tokenize(sentence)
@@ -139,7 +140,8 @@ def knn_get():
 @app.route('/word2vec', methods=['POST'])
 def knn_post():
     data = request.json
-    body = str(data["body"])
+    body = process(str(data["body"]))
+    print(body)
     n_clusters = int(data["n_clusters"])
     sentences = nltk.sent_tokenize(body)
     X = []
@@ -199,7 +201,10 @@ def process(para: str):
     processed = ''
     for line in para.splitlines():
         line = line.strip()
-        if line != '' and line[-1] != '.':
-            line = line + '.'
-        processed += line.strip()
-    return processed
+        if line != '':
+            if line[-1] != '.':
+                line = line + '. '
+            else:
+                line = line + ' '
+        processed += line
+    return processed.strip()

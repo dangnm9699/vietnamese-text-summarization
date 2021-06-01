@@ -59,7 +59,7 @@ class ClusterFeatures(object):
 
     def cluster(self, ratio: float = 0.1) -> List[int]:
         k = 0
-        if ratio <= 1:
+        if ratio < 1:
             k = 1 if ratio * \
                 len(self.features) < 1 else int(len(self.features) * ratio)
         else:
