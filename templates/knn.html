@@ -84,7 +84,11 @@ Word Embedding ft. KNN
     function set_outout(summarized) {
         let element = document.getElementById("summarized");
         element.innerHTML = '';
-        if (summarized === null) return;
+        if (summarized === null) {
+            let txt = document.createTextNode("Failed");
+            element.appendChild(txt);
+            return;
+        }
         let text = document.createTextNode(summarized);
         element.appendChild(text);
     }

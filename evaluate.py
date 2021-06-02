@@ -78,8 +78,8 @@ def process(para: str):
 
 if __name__ == '__main__':
     rouge_bert = []
-    # rouge_w2v = []
-    bert_bert = []
+    rouge_w2v = []
+    # bert_bert = []
     # bert_w2v = []
     data_dir_list = get_data()
     for dir in data_dir_list:
@@ -101,59 +101,59 @@ if __name__ == '__main__':
                 use_first=False
             ))
             summary = summary.replace('_', ' ')
-            p_, r_, f1_ = bert_score_compute(summary, manual_summary, 'vi')
-            bert_bert.append([p_, r_, f1_])
-            p, r, f1 = rouge_score_compute(summary, manual_summary, 'l')
+            # p_, r_, f1_ = bert_score_compute(summary, manual_summary, 'vi')
+            # bert_bert.append([p_, r_, f1_])
+            p, r, f1 = rouge_score_compute(summary, manual_summary, '2')
             rouge_bert.append([p, r, f1])
         except AssertionError:
             pass
         except ValueError:
             pass
 
-        # summary = ""
-        # try:
-        #     sentences = nltk.sent_tokenize(plaintext)
-        #     X = []
-        #     for sentence in sentences:
-        #         sentence = ViTokenizer.tokenize(sentence)
-        #         words = sentence.split(" ")
-        #         sentence_vec = np.zeros((300))
-        #         for word in words:
-        #             if word in vocab:
-        #                 sentence_vec += vocab[word]
-        #                 break
-        #         X.append(sentence_vec)
-        #     kmeans = KMeans(n_clusters=n_clusters)
-        #     kmeans.fit(X)
+        summary = ""
+        try:
+            sentences = nltk.sent_tokenize(plaintext)
+            X = []
+            for sentence in sentences:
+                sentence = ViTokenizer.tokenize(sentence)
+                words = sentence.split(" ")
+                sentence_vec = np.zeros((300))
+                for word in words:
+                    if word in vocab:
+                        sentence_vec += vocab[word]
+                        break
+                X.append(sentence_vec)
+            kmeans = KMeans(n_clusters=n_clusters)
+            kmeans.fit(X)
 
-        #     avg = []
-        #     for j in range(n_clusters):
-        #         idx = np.where(kmeans.labels_ == j)[0]
-        #         avg.append(np.mean(idx))
-        #     closest, _ = pairwise_distances_argmin_min(
-        #         kmeans.cluster_centers_, X)
-        #     ordering = sorted(range(n_clusters), key=lambda k: avg[k])
-        #     summary = ' '.join([sentences[closest[idx]]
-        #                         for idx in ordering])
-        # except ValueError:
-        #     pass
-        # if summary != "":
-        #     try:
-        #         p_, r_, f1_ = bert_score_compute(summary, manual_summary, 'vi')
-        #         bert_w2v.append([p_, r_, f1_])
-        #         print(bert_w2v)
-        #     except AssertionError:
-        #         pass
-        #     p, r, f1 = rouge_score_compute(summary, manual_summary, 'l')
-        #     rouge_w2v.append([p, r, f1])
+            avg = []
+            for j in range(n_clusters):
+                idx = np.where(kmeans.labels_ == j)[0]
+                avg.append(np.mean(idx))
+            closest, _ = pairwise_distances_argmin_min(
+                kmeans.cluster_centers_, X)
+            ordering = sorted(range(n_clusters), key=lambda k: avg[k])
+            summary = ' '.join([sentences[closest[idx]]
+                                for idx in ordering])
+        except ValueError:
+            pass
+        if summary != "":
+            # try:
+            #     p_, r_, f1_ = bert_score_compute(summary, manual_summary, 'vi')
+            #     bert_w2v.append([p_, r_, f1_])
+            #     print(bert_w2v)
+            # except AssertionError:
+            #     pass
+            p, r, f1 = rouge_score_compute(summary, manual_summary, '2')
+            rouge_w2v.append([p, r, f1])
 
     # print(bert_w2v)
-    bert_bert = np.array(bert_bert)
+    rouge_w2v = np.array(rouge_w2v)
     rouge_bert = np.array(rouge_bert)
     # bert_w2v = np.array(bert_w2v)
     # rouge_w2v = np.array(rouge_w2v)
 
-    print(np.mean(bert_bert, axis=0))
+    print(np.mean(rouge_w2v, axis=0))
     print(np.mean(rouge_bert, axis=0))
     # print(np.mean(bert_w2v, axis=0))
     # print(np.mean(rouge_w2v, axis=0))

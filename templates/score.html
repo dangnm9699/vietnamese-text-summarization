@@ -225,11 +225,11 @@ Score
             </select>
         </div>
         <div class="col-md-4 form-group">
-            <label>Method</label>
+            <label>Metric</label>
             <select id="method" class="form-control">
                 <option disabled selected value="none"> -- option an option -- </option>
-                <option value="bert">BERT Score</option>
-                <option value="rouge">Rouge Score</option>
+                <option value="bert">BERTScore</option>
+                <option value="rouge">ROUGE</option>
             </select>
         </div>
     </div>
@@ -242,8 +242,8 @@ Score
                 <div class="row mt-3">
                     <div class="col-md form-group">
                         <label>Paragraph</label>
-                        <textarea id="paragraph" name="paragraph" type="text" rows="15" style="resize: none;" readonly
-                            required class="form-control text-justify"></textarea>
+                        <textarea id="paragraph" name="paragraph" type="text" rows="15" readonly required
+                            class="form-control text-justify"></textarea>
                     </div>
                 </div>
                 <div class="row mt-3 justify-content-center">
@@ -269,13 +269,13 @@ Score
     <div class="row mt-3">
         <div class="col-md-6 form-group">
             <label>Model summarized paragraph</label>
-            <textarea id="model-summarized" name="model-summarized" type="text" rows="10" style="resize: none;" readonly
+            <textarea id="model-summarized" name="model-summarized" type="text" rows="10" readonly
                 class="form-control text-justify"></textarea>
         </div>
         <div class="col-md-6">
             <label>Mannual summarized paragraph</label>
-            <textarea id="manual-summarized" name="manual-summarized" type="text" rows="10" style="resize: none;"
-                readonly class="form-control text-justify"></textarea>
+            <textarea id="manual-summarized" name="manual-summarized" type="text" rows="10" readonly
+                class="form-control text-justify"></textarea>
         </div>
     </div>
     <div class="row mt-3">
