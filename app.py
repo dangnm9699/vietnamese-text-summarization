@@ -119,7 +119,7 @@ def score_post():
     print(summary)
 
     if method == 'bert':
-        p, r, f1 = bert_score_compute(summary, manual_summary, lang='vi')
+        p, r, f1 = bert_score_compute(summary, manual_summary, 'vi')
     if method == 'rouge':
         p, r, f1 = rouge_score_compute(summary, manual_summary, 'l')
 

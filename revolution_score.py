@@ -6,8 +6,7 @@ from rouge import Rouge
 def bert_score_compute(st_cands, st_ref, lang):
     cands = st_cands.split(".")
     refs = st_ref.split(".")
-    P, R, F1 = score(cands, refs, lang=lang,
-                     model_type="bert-base-multilingual-cased", verbose=True)
+    P, R, F1 = score(cands, refs, lang=lang, model_type="bert-base-multilingual-cased", verbose=True)
     return round(float(P.mean()), 2), float(R.mean()), round(float(F1.mean()), 3)
 
 

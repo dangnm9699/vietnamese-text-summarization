@@ -1,3 +1,6 @@
 .vscode
 __pycache__
 we_knn/wiki.vi.vec
+bert-base-multilingual-cased/flax_model.msgpack
+bert-base-multilingual-cased/pytorch_model.bin
+bert-base-multilingual-cased/tf_model.h5
