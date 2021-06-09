@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask import json
 from flask.json import jsonify
 from flask.templating import render_template
+from flask_cors import CORS
 import nltk
 from gensim.models import KeyedVectors
 from sklearn.cluster import KMeans
@@ -13,6 +14,7 @@ import numpy as np
 from summarizer import Summarizer
 
 app = Flask(__name__)
+CORS(app)
 
 DATA_DIR = './data/plaintext/'
 MANUAL_DIR = './data/manual_summary/'
@@ -63,10 +65,10 @@ def score_post():
     modeling = str(request_data["model"])
     method = str(request_data["method"])
 
-    file = open(plaintext_dir, 'r')
+    file = open(plaintext_dir, 'r', encoding='utf8')
     plaintext = file.read()
     file.close()
-    file = open(manual_summary_dir, 'r')
+    file = open(manual_summary_dir, 'r', encoding='utf8')
     manual_summary = file.read()
     file.close()
 
@@ -117,7 +119,7 @@ def score_post():
     print(summary)
 
     if method == 'bert':
-        p, r, f1 = bert_score_compute(summary, manual_summary, 'vi')
+        p, r, f1 = bert_score_compute(summary, manual_summary, lang='vi')
     if method == 'rouge':
         p, r, f1 = rouge_score_compute(summary, manual_summary, 'l')
 
